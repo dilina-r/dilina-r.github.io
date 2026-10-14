@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dilina Rajapakse</title>
+<meta name="description" content="Dilina Rajapakse — Machine Learning researcher working on Reinforcement Learning, Recommender Systems and Explainable AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --surface: #ffffff;
+    --text: #1d2125;
+    --muted: #5b636b;
+    --line: #e4e1da;
+    --accent: #1f5f8b;
+    --accent-soft: #e6eff6;
+    --tag: #f1efe9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171a;
+      --surface: #1b1f23;
+      --text: #e6e8ea;
+      --muted: #9aa3ab;
+      --line: #2c3238;
+      --accent: #7bb6e0;
+      --accent-soft: #1d2d3a;
+      --tag: #232930;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; line-height: 1.25; }
+
+  .layout {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 56px;
+  }
+
+  /* ---------- Sidebar ---------- */
+  aside { position: sticky; top: 48px; align-self: start; }
+  .avatar {
+    width: 148px; height: 148px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent);
+    display: grid; place-items: center;
+    font-family: "Source Serif 4", serif; font-size: 52px; font-weight: 600;
+    overflow: hidden; margin-bottom: 20px;
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  aside h1 { font-size: 30px; margin: 0 0 6px; }
+  .role { color: var(--muted); margin: 0 0 4px; font-size: 15px; }
+  .affil { color: var(--muted); margin: 0 0 18px; font-size: 15px; }
+  .links { list-style: none; padding: 0; margin: 0 0 22px; }
+  .links li { margin: 6px 0; font-size: 15px; }
+  .links a { display: inline-flex; align-items: center; gap: 10px; color: var(--text); }
+  .links a:hover { color: var(--accent); text-decoration: none; }
+  .links svg { width: 18px; height: 18px; fill: currentColor; flex: none; opacity: .8; }
+  .btn {
+    display: inline-block; padding: 9px 18px; border-radius: 8px;
+    background: var(--accent); color: var(--bg); font-weight: 600; font-size: 14px;
+  }
+  .btn:hover { text-decoration: none; opacity: .9; }
+  nav.toc { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 18px; }
+  nav.toc a { display: block; color: var(--muted); font-size: 14px; padding: 3px 0; }
+  nav.toc a:hover { color: var(--accent); text-decoration: none; }
+
+  /* ---------- Main ---------- */
+  main section { margin-bottom: 52px; scroll-margin-top: 24px; }
+  main h2 {
+    font-size: 24px; margin: 0 0 18px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .lead { font-size: 17px; }
+  .interests { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; padding: 0; list-style: none; }
+  .interests li { background: var(--accent-soft); color: var(--accent); padding: 4px 12px; border-radius: 999px; font-size: 14px; font-weight: 500; }
+
+  .entry { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; margin-bottom: 24px; }
+  .entry h3 { font-size: 18px; margin: 0; }
+  .entry .when { color: var(--muted); font-size: 14px; white-space: nowrap; text-align: right; }
+  .entry .sub { grid-column: 1 / -1; color: var(--muted); font-size: 15px; }
+  .entry ul { grid-column: 1 / -1; margin: 8px 0 0; padding-left: 20px; }
+  .entry li { margin: 4px 0; }
+
+  .pub { padding: 14px 0; border-bottom: 1px dashed var(--line); }
+  .pub:last-child { border-bottom: 0; }
+  .pub .title { font-weight: 600; font-size: 16px; }
+  .pub .authors, .pub .venue { color: var(--muted); font-size: 14.5px; }
+  .pub .me { color: var(--text); font-weight: 600; }
+  .pub .venue em { color: var(--text); font-style: normal; }
+  .badge { display: inline-block; font-size: 12px; font-weight: 600; padding: 1px 8px; border-radius: 4px; background: var(--tag); color: var(--muted); margin-right: 6px; vertical-align: 1px; }
+  .badge.new { background: var(--accent-soft); color: var(--accent); }
+  .pub .plinks { margin-top: 4px; font-size: 14px; }
+  .pub .plinks a { margin-right: 14px; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+  .card h3 { font-size: 17px; margin: 0 0 6px; }
+  .card p { margin: 0 0 10px; color: var(--muted); font-size: 14.5px; }
+  .card .plinks { font-size: 14px; }
+  .card .plinks a { margin-right: 14px; }
+
+  .simple { list-style: none; padding: 0; margin: 0; }
+  .simple li { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 7px 0; }
+  .simple .yr { color: var(--muted); font-size: 14px; padding-top: 1px; }
+
+  .skills dt { font-weight: 600; margin-top: 10px; }
+  .skills dd { margin: 2px 0 0; color: var(--muted); }
+
+  footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 18px; }
+
+  @media (max-width: 820px) {
+    .layout { grid-template-columns: 1fr; gap: 32px; padding: 32px 16px; }
+    aside { position: static; text-align: center; }
+    .avatar { margin: 0 auto 16px; }
+    .links { display: inline-block; text-align: left; }
+    nav.toc { display: none; }
+    .entry { grid-template-columns: 1fr; }
+    .entry .when { text-align: left; }
+    .simple li { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- =============== SIDEBAR =============== -->
+  <aside>
+    <!-- To add a photo: put photo.jpg in this folder and replace "DR" with: <img src="photo.jpg" alt="Dilina Rajapakse"> -->
+    <div class="avatar">DR</div>
+    <h1>Dilina Rajapakse</h1>
+    <p class="role">Machine Learning Researcher</p>
+    <p class="affil">PhD, Trinity College Dublin</p>
+
+    <ul class="links">
+      <li><a href="mailto:dilina.rajapakse@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 5-8-5V6l8 5 8-5v2.2z"/></svg>
+        dilina.rajapakse@gmail.com</a></li>
+      <li><a href="https://github.com/dilina-r" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+        github.com/dilina-r</a></li>
+      <li><a href="https://www.linkedin.com/in/dilinar" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M20.4 2H3.6A1.6 1.6 0 0 0 2 3.6v16.8A1.6 1.6 0 0 0 3.6 22h16.8a1.6 1.6 0 0 0 1.6-1.6V3.6A1.6 1.6 0 0 0 20.4 2zM8 19H5V9.5h3V19zM6.5 8.2a1.7 1.7 0 1 1 0-3.5 1.7 1.7 0 0 1 0 3.5zM19 19h-3v-4.6c0-1.1 0-2.5-1.5-2.5S12.8 13 12.8 14.3V19h-3V9.5h2.9v1.3a3.2 3.2 0 0 1 2.9-1.6c3 0 3.5 2 3.5 4.6V19z"/></svg>
+        linkedin.com/in/dilinar</a></li>
+      <!-- Add Google Scholar here when ready:
+      <li><a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" rel="noopener">Google Scholar</a></li> -->
+    </ul>
+
+    <a class="btn" href="cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a>
+
+    <nav class="toc">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#publications">Publications</a>
+      <a href="#code">Research &amp; Code</a>
+      <a href="#skills">Skills</a>
+    </nav>
+  </aside>
+
+  <!-- =============== MAIN =============== -->
+  <main>
+
+    <section id="about">
+      <h2>About</h2>
+      <p class="lead">I am a machine learning researcher working on reinforcement learning, recommender systems and explainable AI. I completed my PhD in Computer Science at Trinity College Dublin under Prof. Douglas Leith, studying user cold-start and reinforcement learning for recommender systems, and then worked as a post-doctoral researcher at the CONNECT Research Centre on explaining multi-objective RL agents.</p>
+      <p>Before my PhD, I spent over three years in industry as a Senior Machine Learning Engineer at Zone24x7, building production computer vision systems for retail analytics and security.</p>
+      <ul class="interests">
+        <li>Reinforcement Learning</li>
+        <li>Recommender Systems</li>
+        <li>Explainable AI</li>
+        <li>Online Learning</li>
+        <li>Computer Vision</li>
+      </ul>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+
+      <div class="entry">
+        <h3>Post-Doctoral Researcher — Distributed Systems Group</h3>
+        <span class="when">Apr 2025 – Jun 2026</span>
+        <span class="sub">CONNECT Research Centre, Trinity College Dublin · Dublin, Ireland</span>
+      </div>
+
+      <div class="entry">
+        <h3>Doctoral Researcher</h3>
+        <span class="when">Apr 2021 – Mar 2025</span>
+        <span class="sub">Trinity College Dublin · Dublin, Ireland</span>
+      </div>
+
+      <div class="entry">
+        <h3>Senior Machine Learning Engineer — Computer Vision &amp; Video Analytics</h3>
+        <span class="when">Dec 2017 – Apr 2021</span>
+        <span class="sub">Zone24x7 Pvt Ltd · Nawala, Sri Lanka</span>
+      </div>
+
+      <div class="entry">
+        <h3>Trainee Associate Electronics Engineer — Machine Learning</h3>
+        <span class="when">Nov 2016 – Feb 2017</span>
+        <span class="sub">Zone24x7 Pvt Ltd · Nawala, Sri Lanka</span>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="entry">
+        <h3>PhD in Computer Science</h3>
+        <span class="when">2021 – 2025</span>
+        <span class="sub">Trinity College Dublin, The University of Dublin · Ireland</span>
+        <ul>
+          <li>Thesis: <em>Recommender Systems: A Study of User Cold-Start and Reinforcement Learning</em></li>
+          <li>Supervisor: Prof. Douglas Leith · Funded by Science Foundation Ireland</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <h3>BSc (Hons) Electrical and Electronics Engineering</h3>
+        <span class="when">2014 – 2018</span>
+        <span class="sub">Sri Lanka Institute of Information Technology (SLIIT) · Sri Lanka</span>
+        <ul>
+          <li>First Class Honours · GPA 3.82/4.00 (ranked 2nd)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+
+      <div class="pub">
+        <div class="title"><span class="badge new">Accepted</span>TREX: Trajectory Explanations for Multi-Objective Reinforcement Learning</div>
+        <div class="authors"><span class="me">Dilina Rajapakse</span>, Juan C. Rosero, Ivana Dusparic</div>
+        <div class="venue"><em>XAI 2026</em> — 4th World Conference on Explainable Artificial Intelligence, 2026</div>
+      </div>
+
+      <div class="pub">
+        <div class="title">Reassessing the Effectiveness of Reinforcement Learning based Recommender Systems for Sequential Recommendation</div>
+        <div class="authors"><span class="me">Dilina Chandika Rajapakse</span>, Dietmar Jannach</div>
+        <div class="venue"><em>SIGIR 2025</em> — 48th International ACM SIGIR Conference, 2025</div>
+      </div>
+
+      <div class="pub">
+        <div class="title">RLT4Rec: Reinforcement Learning Transformer for User Cold Start and Item Recommendation</div>
+        <div class="authors"><span class="me">Dilina Chandika Rajapakse</span>, Douglas Leith</div>
+        <div class="venue"><em>arXiv preprint</em> arXiv:2412.07403, 2024</div>
+        <div class="plinks"><a href="https://arxiv.org/abs/2412.07403" target="_blank" rel="noopener">arXiv</a><a href="https://arxiv.org/pdf/2412.07403" target="_blank" rel="noopener">PDF</a></div>
+      </div>
+
+      <div class="pub">
+        <div class="title">A Good State Estimator Can Yield A Simple Recommender: A Reinforcement Learning Perspective</div>
+        <div class="authors"><span class="me">Dilina Chandika Rajapakse</span>, Douglas Leith</div>
+        <div class="venue"><em>OARS 2024</em> — 4th International Workshop on Online and Adaptive Recommender Systems, 2024</div>
+      </div>
+
+      <div class="pub">
+        <div class="title">User Cold-Start Learning in Recommender Systems Using Monte Carlo Tree Search</div>
+        <div class="authors"><span class="me">Dilina Chandika Rajapakse</span>, Douglas Leith</div>
+        <div class="venue"><em>ACM Transactions on Recommender Systems (TORS)</em>, 2023</div>
+        <div class="plinks"><a href="https://doi.org/10.1145/3618002" target="_blank" rel="noopener">DOI</a></div>
+      </div>
+
+      <div class="pub">
+        <div class="title">Fast and Accurate User Cold-Start Learning Using Monte Carlo Tree Search</div>
+        <div class="authors"><span class="me">Dilina Chandika Rajapakse</span>, Douglas Leith</div>
+        <div class="venue"><em>RecSys '22</em> — 16th ACM Conference on Recommender Systems, pp. 350–359, 2022</div>
+        <div class="plinks"><a href="https://doi.org/10.1145/3523227.3546786" target="_blank" rel="noopener">DOI</a></div>
+      </div>
+    </section>
+
+    <section id="code">
+      <h2>Research &amp; Code</h2>
+      <p>Code for my research is available on <a href="https://github.com/dilina-r" target="_blank" rel="noopener">GitHub</a>.</p>
+      <div class="cards">
+        <!-- To link a specific repo, add a line like:
+             <a href="https://github.com/dilina-r/REPO-NAME" target="_blank" rel="noopener">Code</a>
+             inside the card's "plinks" div. -->
+        <div class="card">
+          <h3>TREX</h3>
+          <p>Trajectory-based explanations for multi-objective reinforcement learning agents.</p>
+          <div class="plinks"><a href="#publications">Paper</a></div>
+        </div>
+        <div class="card">
+          <h3>RLT4Rec</h3>
+          <p>A Transformer-based RL recommender for cold-start and established users.</p>
+          <div class="plinks"><a href="https://arxiv.org/abs/2412.07403" target="_blank" rel="noopener">Paper</a></div>
+        </div>
+        <div class="card">
+          <h3>MCTS Cold-Start Recommender</h3>
+          <p>Monte-Carlo Tree Search for fast user cold-start learning, optimised in C++ for real-time use.</p>
+          <div class="plinks"><a href="https://doi.org/10.1145/3618002" target="_blank" rel="noopener">Paper</a></div>
+        </div>
+        <div class="card">
+          <h3>RL Recommender Benchmark</h3>
+          <p>Reproducibility study of RL-based sequential recommenders against supervised baselines.</p>
+          <div class="plinks"><a href="#publications">Paper</a></div>
+        </div>
+      </div>
+      <p style="margin-top:18px"><a class="btn" href="https://github.com/dilina-r?tab=repositories" target="_blank" rel="noopener">View all repositories →</a></p>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <dl class="skills">
+        <dt>Machine Learning &amp; Deep Learning</dt>
+        <dd>PyTorch, TensorFlow, MXNet, OpenVINO, OpenCV, Hugging Face Transformers, LLMs</dd>
+        <dt>Programming</dt>
+        <dd>Python, C++/C, MATLAB, R, Java, Android</dd>
+        <dt>Tools &amp; Infrastructure</dt>
+        <dd>Linux, Git, Docker, AWS, GCP, Kafka, Flask, SQL, MongoDB</dd>
+      </dl>
+    </section>
+
+    <footer>© 2026 Dilina Rajapakse · Hosted on GitHub Pages</footer>
+  </main>
+</div>
+</body>
+</html>
